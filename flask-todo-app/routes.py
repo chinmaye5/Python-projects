@@ -6,6 +6,3 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-unique-secret-key'
 # Register the tasks Blueprint
 app.register_blueprint(tasks, url_prefix='/')
-
-if __name__ == '__main__':
-    app.run(debug=True)
