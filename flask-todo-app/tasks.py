@@ -48,12 +48,12 @@ def complete_task(task_id):
         task_description = task_data['task_name']
         
         # Call the function to send the completion email
-        send_task_completion_email('programmerpravesh@gmail.com', task_description)
+        send_task_completion_email(Config.EMAIL, task_description)
 
         flash('Task marked as completed and email notification sent', 'success')
     else:
         flash('Task not found', 'danger')
-        
+
     flash('Task marked as completed', 'success')
     return redirect(url_for('tasks.home'))
 
