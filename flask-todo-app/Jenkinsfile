@@ -61,9 +61,18 @@ pipeline {
 
         stage("Running the Docker Image") {
             steps {
-                script {
-                    sh 'docker run -e SNS_TOPIC_ARN=${SNS_TOPIC_ARN} -d -p 5000:5000 flask-todo-dynamo:v1'
-                }
+                withCredentials([
+                    string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY')
+                ]){
+                     script {
+                        sh docker run -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+                                       -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+                                       -e AWS_REGION=us-east-1 \
+                                       flask-todo-dynamo:v1
+    
+                    }
+                }    
             }   
         }
     }
