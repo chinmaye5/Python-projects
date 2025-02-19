@@ -13,7 +13,6 @@ pipeline {
             steps {
                 git branch: "main", url: "https://github.com/Pravesh-Sudha/Python-projects.git"
             }
-            
         }
 
         stage("Provisioning and Applying Terraform files"){
@@ -21,7 +20,7 @@ pipeline {
                 withCredentials([
                     string(credentialId: AWS_ACCESS_KEY_ID, variable: AWS_ACCESS_KEY_ID),
                     string(credentialId: AWS_SECRET_ACCESS_KEY, variable: AWS_SECRET_ACCESS_KEY)
-                ])
+                ]){
                     script {
                         dir(TERRAFORM_DIR){
                             sh """
@@ -34,6 +33,7 @@ pipeline {
                             """
                         }
                     }
+                }
             }
         }
         stage ("Getting the SNS-Topic-Arn"){
