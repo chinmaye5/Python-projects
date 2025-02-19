@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    tools {
+        git 'Default'
+    }
+
     environment {
         AWS_REGION = 'us-east-1'
         PROJECT_DIR = "$WORKSPACE/flask-todo-app/"
