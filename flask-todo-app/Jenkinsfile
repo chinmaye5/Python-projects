@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage("Checking the code"){
             steps {
-                git branch: "main", url: "https://github.com/Pravesh-Sudha/Python-projects"
+                git branch: "main", url: "https://github.com/Pravesh-Sudha/Python-projects.git"
             }
             
         }
@@ -39,9 +39,11 @@ pipeline {
         stage ("Getting the SNS-Topic-Arn"){
             steps{
                 script{
-                    def output = sh(script: 'terraform output -raw sns_topic_arn', returnStdout: true).trim()
-                    env.SNS_TOPIC_ARN = output
-                    echo "SNS-Topic-ARN: ${SNS_TOPIC_ARN}" 
+                    dir(TERRAFORM_DIR){
+                        def output = sh(script: 'terraform output -raw sns_topic_arn', returnStdout: true).trim()
+                        env.SNS_TOPIC_ARN = output
+                        echo "SNS-Topic-ARN: ${SNS_TOPIC_ARN}"   
+                    } 
                 }
             }
         }
