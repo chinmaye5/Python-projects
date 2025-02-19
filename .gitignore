@@ -1,2 +1,5 @@
 flask-todo-app/flask-env/
 flask-todo-app/__pycache__/
+flask-todo-app/terraform-setup/.terraform*
+flask-todo-app/terraform-setup/terraform*
+
