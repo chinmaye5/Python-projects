@@ -53,7 +53,7 @@ pipeline {
             steps {
                 script {
                     dir(PROJECT_DIR) {
-                        sh 'docker build -t flask-todo-dynamo:v1 .'
+                        sh 'sudo docker build -t flask-todo-dynamo:v1 .'
                     }
                 }
             }
@@ -67,7 +67,7 @@ pipeline {
                 ]){
                      script {
                         sh """ 
-                        docker run -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+                        sudo docker run -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
                                        -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
                                        -e AWS_REGION=us-east-1 \
                                        -e SNS_TOPIC_ARN=${env.SNS_TOPIC_ARN} \
