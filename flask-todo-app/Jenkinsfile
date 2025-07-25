@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage("Checking the code") {
             steps {
-                git branch: "main", url: "https://github.com/Pravesh-Sudha/Python-projects"
+                git branch: "main", url: "https://github.com/Manikantachidurala/Python-projects.git"
             }
         }
 
