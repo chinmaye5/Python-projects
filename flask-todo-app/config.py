@@ -5,4 +5,4 @@ class Config:
     AWS_REGION = 'us-east-1'
     DYNAMODB_TABLE = 'todo_tasks'
     SNS_TOPIC_ARN = os.getenv("SNS_TOPIC_ARN")
-    EMAIL = "chiduralamanikanta34@gmail.com"
+    EMAIL = "chinmayejog66@gmail.com"
